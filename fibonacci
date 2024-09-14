@@ -1,0 +1,38 @@
+'''Fibonacci Sequence
+'''
+
+fib_cache = {}
+
+def fib_memo(input_val):
+    if input_val in fib_cache:
+        return fib_cache[input_val]
+
+    if input_val == 0:
+        val = 0
+    elif input_val < 2:
+        val = 1
+    else:
+        val = fib_memo(input_val - 1) + fib_memo(input_val - 2)
+
+    fib_cache[input_val] = val
+    return val
+
+def main():
+    try:
+        # Solicita ao usuário o número até o qual mostrar a sequência
+        n = int(input("Digite até qual número da sequência de Fibonacci deseja ver: "))
+        
+        if n < 1:
+            print("Por favor, insira um número inteiro positivo.")
+            return
+        
+        print('======== Sequência de Fibonacci ========')
+        
+        for i in range(1, n + 1):
+            print(f'Fibonacci ({i}) : {fib_memo(i)}')
+
+    except ValueError:
+        print("Por favor, insira um número inteiro válido.")
+
+if __name__ == '__main__':
+    main()

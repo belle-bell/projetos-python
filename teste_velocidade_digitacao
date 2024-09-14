@@ -1,0 +1,55 @@
+'''
+Teste de velocidade de digitação
+'''
+
+import tkinter as tk
+from timeit import default_timer as timer
+import random
+
+def teste_velocidade():
+    frases_teste_velocidade = [
+        'Essa é uma frase aleatória para checar a velocidade.',
+        'A história estava cheia de aventuras e mistérios.',
+        'O aprendizado é uma jornada sem fim.'
+    ]
+
+    frase = random.choice(frases_teste_velocidade)
+    start = timer()
+
+    def olhar_resultado():
+        if entry.get() == frase:
+            end = timer()
+            legenda_3.config(text=f'Tempo: {round((end - start), 4)}s')
+        else:
+            legenda_3.config(text='Digitação incorreta')
+
+    # Criação da janela principal
+    main_window = tk.Tk()
+    main_window.geometry('750x400')
+    main_window.title("Teste de Velocidade de Digitação")
+
+    # Configuração dos widgets
+    legenda_1 = tk.Label(main_window, text=frase, font='times 20')
+    legenda_1.place(x=150, y=10)
+
+    legenda_2 = tk.Label(main_window, text='Comece a digitar:', font='times 20')
+    legenda_2.place(x=10, y=55)
+
+    entry = tk.Entry(main_window)
+    entry.place(x=240, y=65)
+
+    button_1 = tk.Button(main_window, text='Feito', command=olhar_resultado, width=13, bg='grey')
+    button_1.place(x=150, y=100)
+
+    button_2 = tk.Button(main_window, text='Tentar novamente', command=lambda: main_window.destroy(), width=13, bg='grey')
+    button_2.place(x=275, y=100)
+
+    legenda_3 = tk.Label(main_window, text='', font='times 20')
+    legenda_3.place(x=250, y=150)
+
+    main_window.mainloop()
+
+if __name__ == '__main__':
+    teste_velocidade()
+
+            
